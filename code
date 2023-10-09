@@ -1,0 +1,89 @@
+Consider three strings instr1, instr2 and instr3 having only lowercase alphabets. 
+  Identify a string , outstr, with the smallest possible length such that when strings instr1, outstr and instr2 are concatenated in the same order, instr3 becomes a substring of the concatenated string. 
+  Print the smallest possible length of (instr1 + outstr + instr2) satisfying the given criteria.
+
+  
+Program.java  
+
+import java.util.Scanner;  
+
+public class Program {  
+
+   public static boolean isPalindrome(String str){
+
+       int start = 0, end = str.length()-1;
+
+       while (start < end){
+
+           if(str.charAt(start) != str.charAt(end)){
+
+               return false;
+
+           }
+
+           start++;
+
+           end--;
+
+       }
+
+       return true;
+
+   }  
+
+   public static int countPalindromePairs(String[] inarr){
+
+       int count = 0;
+
+       for(int i=0; i<inarr.length; i++){
+
+           for(int j=i+1; j<inarr.length; j++){
+
+               StringBuilder sb = new StringBuilder();
+
+               sb.append(inarr[i]).append(inarr[j]);
+
+               if(isPalindrome(sb.toString())){
+
+                   count++;
+
+               }
+
+           }
+
+       }
+
+       return count == 0 ? -1 : count;
+
+   }
+
+   public static void main(String[] args) {
+
+       Scanner sc = new Scanner(System.in);
+
+       String line = sc.next();
+
+       String[] inarr = line.split(",");
+
+       int count = countPalindromePairs(inarr);
+
+       System.out.println("RESULT: "+count);
+
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
